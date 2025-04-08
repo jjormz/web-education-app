@@ -1,0 +1,10 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+
+  <path d="M160 320c-35 0-64-29-64-64s29-64 64-64c4 0 8 0 12 1 15-38 51-65 92-65 45 0 83 31 94 73 2-1 5-1 8-1 31 0 56 25 56 56s-25 56-56 56H160z"
+        fill="royalblue"/>
+
+  <path d="M160 180c0-11 9-20 20-20h90c11 0 20 9 20 20v150c0 11-9 20-20 20h-90c-11 0-20-9-20-20V180z"
+        fill="darkblue"/>
+  <path d="M200 180v150" stroke="white" stroke-width="4"/>
+
+</svg>
