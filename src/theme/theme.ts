@@ -5,7 +5,7 @@ const theme = createTheme({
         mode: "light",
         background: {
             default: "#ffffff",
-            paper: "#f1f1f1",
+            paper: "#fefefe",
         },
         primary: {
             main: "#f1f1f1",

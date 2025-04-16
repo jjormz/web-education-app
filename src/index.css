@@ -1,4 +1,7 @@
 #root {
     --view-lt-color: #f1f1f1;
     --side-lt-color: royalblue;
+    width: 100vw;
+    height: 100vh;
+    scroll-behavior: smooth;
 }

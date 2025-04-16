@@ -1,10 +1,11 @@
-<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="none">
 
-  <path d="M160 320c-35 0-64-29-64-64s29-64 64-64c4 0 8 0 12 1 15-38 51-65 92-65 45 0 83 31 94 73 2-1 5-1 8-1 31 0 56 25 56 56s-25 56-56 56H160z"
-        fill="royalblue"/>
+  <polygon points="256,40 20,160 256,280 492,160" fill="darkblue"/>
 
-  <path d="M160 180c0-11 9-20 20-20h90c11 0 20 9 20 20v150c0 11-9 20-20 20h-90c-11 0-20-9-20-20V180z"
-        fill="darkblue"/>
-  <path d="M200 180v150" stroke="white" stroke-width="4"/>
+  <line x1="256" y1="160" x2="336" y2="220" stroke="white" stroke-width="10"/>
+  <circle cx="336" cy="220" r="15" fill="white"/>
 
+  <circle cx="120" cy="350" r="90" stroke="royalblue" stroke-width="30" fill="none"/>
+  <circle cx="392" cy="350" r="90" stroke="royalblue" stroke-width="30" fill="none"/>
+  <line x1="210" y1="350" x2="302" y2="350" stroke="royalblue" stroke-width="30"/>
 </svg>

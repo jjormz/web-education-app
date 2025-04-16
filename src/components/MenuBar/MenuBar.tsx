@@ -1,27 +1,62 @@
-import React from "react";
-import { Box, Divider, List, ListItem, ListItemButton } from "@mui/material";
+import React, { useState } from "react";
+import {
+    Box,
+    Collapse,
+    Divider,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemText,
+} from "@mui/material";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 const MenuBar = () => {
+    const [open, setOpen] = useState(true);
+
+    const handleClick = () => {
+        setOpen(!open);
+    };
+
     return (
-        <aside>
-            <Box
-                sx={{
-                    width: "20rem",
-                    marginTop: "4rem",
-                    height: "calc(100vh - 4rem)",
-                    bgcolor: "primary.main",
-                    color: "primary.contrastText",
-                }}
-            >
-                <List sx={{ paddingLeft: "0.6rem" }}>
-                    <ListItem
-                        disablePadding
+        <Box
+            sx={{
+                position: "fixed",
+                top: "0",
+                left: "0",
+                zIndex: 10,
+                width: "18rem",
+                marginTop: "4rem",
+                height: "calc(100vh - 4rem)",
+                bgcolor: "primary.main",
+                color: "primary.contrastText",
+            }}
+        >
+            <List>
+                <ListItem
+                    disablePadding
+                    sx={{
+                        gap: "0.5rem",
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                >
+                    <ListItemButton
                         sx={{
-                            gap: "0.5rem",
-                            display: "flex",
-                            flexDirection: "column",
+                            width: "100%",
+                            borderTopLeftRadius: "20px",
+                            borderBottomLeftRadius: "20px",
                         }}
                     >
+                        Главная
+                    </ListItemButton>
+                </ListItem>
+                <Divider />
+                <ListItemButton onClick={handleClick}>
+                    <ListItemText primary="Мои курсы" />
+                    {open ? <ExpandLess /> : <ExpandMore />}
+                </ListItemButton>
+                <Collapse in={open} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
                         <ListItemButton
                             sx={{
                                 width: "100%",
@@ -29,7 +64,7 @@ const MenuBar = () => {
                                 borderBottomLeftRadius: "20px",
                             }}
                         >
-                            Главная
+                            Матеша
                         </ListItemButton>
                         <ListItemButton
                             sx={{
@@ -38,13 +73,12 @@ const MenuBar = () => {
                                 borderBottomLeftRadius: "20px",
                             }}
                         >
-                            Все курсы
+                            Русич
                         </ListItemButton>
-                    </ListItem>
-                    <Divider />
-                </List>
-            </Box>
-        </aside>
+                    </List>
+                </Collapse>
+            </List>
+        </Box>
     );
 };
 
