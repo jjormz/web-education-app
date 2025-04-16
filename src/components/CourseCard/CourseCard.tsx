@@ -46,7 +46,11 @@ const CourseCard: FC<CourseCardProps> = ({ headerGradients }) => {
                     height: "20rem",
                 }}
             >
-                <Typography variant="body2" color="primary.contrastText">
+                <Typography
+                    variant="body2"
+                    color="primary.contrastText"
+                    sx={{ textWrap: "balance" }}
+                >
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                     Atque fugit sint aperiam excepturi quas qui voluptatibus
                     unde quis ad similique odit velit, magni vitae in aspernatur
