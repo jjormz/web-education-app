@@ -1,12 +1,12 @@
 import { Box, Button, Dialog, DialogTitle, TextField } from "@mui/material";
 import React, { FC } from "react";
 
-interface RegFormProps {
+interface CreateModalProps {
     isOpened: boolean;
     onClose: () => void;
 }
 
-const RegistrationButton: FC<RegFormProps> = ({ isOpened, onClose }) => {
+const CreateModal: FC<CreateModalProps> = ({ isOpened, onClose }) => {
     return (
         <Dialog onClose={onClose} open={isOpened}>
             <Box
@@ -20,7 +20,7 @@ const RegistrationButton: FC<RegFormProps> = ({ isOpened, onClose }) => {
                 }}
             >
                 <DialogTitle sx={{ width: "fit-content" }}>
-                    Регистрация
+                    Создать урок
                 </DialogTitle>
                 <Box
                     sx={{
@@ -33,49 +33,25 @@ const RegistrationButton: FC<RegFormProps> = ({ isOpened, onClose }) => {
                 >
                     <TextField
                         id="outlined-basic"
-                        label="Имя"
+                        label="Название"
                         variant="outlined"
                         color="secondary"
                         sx={{ width: "70%" }}
                     />
                     <TextField
                         id="outlined-basic"
-                        label="Фамилия"
-                        variant="outlined"
-                        color="secondary"
-                        sx={{ width: "70%", marginTop: "1rem" }}
-                    />
-                    <TextField
-                        id="outlined-basic"
-                        label="E-mail"
-                        variant="outlined"
-                        color="secondary"
-                        sx={{ width: "70%", marginTop: "1rem" }}
-                    />
-                    <TextField
-                        id="outlined-basic"
-                        label="Пароль"
-                        type="password"
+                        label="Описание"
                         variant="outlined"
                         color="secondary"
                         sx={{ width: "70%", marginTop: "1rem" }}
                     />
                 </Box>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    sx={{
-                        "&:hover": {
-                            color: "white",
-                            background: "royalblue",
-                        },
-                    }}
-                >
-                    Зарегестрироваться
+                <Button variant="contained" color="secondary">
+                    Создать
                 </Button>
             </Box>
         </Dialog>
     );
 };
 
-export default RegistrationButton;
+export default CreateModal;

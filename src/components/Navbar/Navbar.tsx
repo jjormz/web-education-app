@@ -1,19 +1,31 @@
 import React, { useState } from "react";
 import {
     AppBar,
-    Avatar,
     Box,
     Button,
     Divider,
+    Menu,
+    MenuItem,
     Toolbar,
     Typography,
 } from "@mui/material";
 import AuthForm from "../AuthForm/AuthForm";
 import RegistrationButton from "../RegistrationButton/RegistrationButton";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
     const [openedAuthForm, setOpenedAuthForm] = useState(false);
     const [openedRegForm, setOpenedRegForm] = useState(false);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const openProfile = Boolean(anchorEl);
+
+    const handleProfileClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleProfileClose = () => {
+        setAnchorEl(null);
+    };
 
     const handlerRegOpen = () => {
         setOpenedRegForm(!openedRegForm);
@@ -43,24 +55,49 @@ const Navbar = () => {
                 <Typography
                     variant="h5"
                     component="div"
-                    sx={{ textDecoration: "underline" }}
+                    color="black"
+                    component={Link}
+                    to="/courses"
+                    sx={{
+                        fontWeight: "600",
+                        textDecoration: "none",
+                        "&:hover": {
+                            color: "royalblue",
+                        },
+                    }}
                 >
-                    Мой курс
+                    Coursium
                 </Typography>
                 <Box
                     sx={{
                         display: "flex",
-                        width: "20rem",
+                        width: "25rem",
                         justifyContent: "space-between",
                     }}
                 >
-                    <Avatar
-                        src="../../assets/test-avatar.jpg"
-                        alt="User User"
-                        sx={{
-                            cursor: "pointer",
-                        }}
-                    />
+                    <Button
+                        variant="text"
+                        color="contrastText"
+                        aria-controls={openProfile ? "basic-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={openProfile ? "true" : undefined}
+                        onClick={handleProfileClick}
+                    >
+                        Иван Иванов
+                    </Button>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={openProfile}
+                        onClose={handleProfileClose}
+                        sx={{ width: "20rem" }}
+                    >
+                        <MenuItem onClick={handleProfileClose}>Тема</MenuItem>
+                        <MenuItem onClick={handleProfileClose}>
+                            Настройки
+                        </MenuItem>
+                        <MenuItem onClick={handleProfileClose}>Выйти</MenuItem>
+                    </Menu>
                     <Button
                         variant="contained"
                         color="secondary"

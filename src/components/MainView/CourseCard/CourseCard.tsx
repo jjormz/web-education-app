@@ -1,13 +1,22 @@
-import { Avatar, Box, Paper, Typography } from "@mui/material";
-import React, { FC } from "react";
+import { Box, Paper, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import React from "react";
+import { ICourse } from "../../../data";
 
 interface CourseCardProps {
-    headerGradients: string;
+    course: ICourse;
 }
 
-const CourseCard: FC<CourseCardProps> = ({ headerGradients }) => {
+const CourseCard: React.FC<CourseCardProps> = ({ course }) => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate(`/courses/${course.id}`);
+    };
+
     return (
         <Paper
+            onClick={handleClick}
             sx={{
                 height: "25rem",
                 width: "23rem",
@@ -22,16 +31,15 @@ const CourseCard: FC<CourseCardProps> = ({ headerGradients }) => {
                 sx={{
                     width: "100%",
                     height: "5rem",
-                    background: headerGradients,
                     padding: "10px",
                 }}
             >
                 <Typography
                     variant="h6"
-                    color="primary.main"
+                    color="contrastText"
                     sx={{ textWrap: "balance" }}
                 >
-                    Test course name
+                    {course.title}
                 </Typography>
             </Box>
             <Box
@@ -51,20 +59,12 @@ const CourseCard: FC<CourseCardProps> = ({ headerGradients }) => {
                     color="primary.contrastText"
                     sx={{ textWrap: "balance" }}
                 >
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Atque fugit sint aperiam excepturi quas qui voluptatibus
-                    unde quis ad similique odit velit, magni vitae in aspernatur
-                    consequatur voluptas laborum. Inventore!
+                    {course.description}
                 </Typography>
                 <Box
                     sx={{ display: "flex", alignItems: "center", gap: "1rem" }}
                 >
-                    <Avatar
-                        sx={{ height: "2rem", width: "2rem" }}
-                        alt="User"
-                        src="../../assets/test-avatar.jpg"
-                    ></Avatar>
-                    <Typography color="grey">Author User</Typography>
+                    <Typography color="grey">{course.author}</Typography>
                 </Box>
             </Box>
         </Paper>

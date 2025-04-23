@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Box,
     Collapse,
@@ -7,11 +7,31 @@ import {
     ListItem,
     ListItemButton,
     ListItemText,
+    Typography,
 } from "@mui/material";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
+import { Link } from "react-router-dom";
+import { getAllCourses, ICourse } from "../../data";
 
 const MenuBar = () => {
+    const [courses, setCourses] = useState<ICourse[]>([]);
     const [open, setOpen] = useState(true);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchCourses = async () => {
+            try {
+                const coursesData = await getAllCourses();
+                setCourses(coursesData);
+            } catch (error) {
+                console.error("Ошибка загрузки курсов:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchCourses();
+    }, []);
 
     const handleClick = () => {
         setOpen(!open);
@@ -20,6 +40,7 @@ const MenuBar = () => {
     return (
         <Box
             sx={{
+                paddingLeft: "0.5rem",
                 position: "fixed",
                 top: "0",
                 left: "0",
@@ -41,10 +62,15 @@ const MenuBar = () => {
                     }}
                 >
                     <ListItemButton
+                        component={Link}
+                        to="/courses"
                         sx={{
                             width: "100%",
                             borderTopLeftRadius: "20px",
                             borderBottomLeftRadius: "20px",
+                            "&.active": {
+                                bgcolor: "primary.dark",
+                            },
                         }}
                     >
                         Главная
@@ -57,24 +83,31 @@ const MenuBar = () => {
                 </ListItemButton>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        <ListItemButton
-                            sx={{
-                                width: "100%",
-                                borderTopLeftRadius: "20px",
-                                borderBottomLeftRadius: "20px",
-                            }}
-                        >
-                            Матеша
-                        </ListItemButton>
-                        <ListItemButton
-                            sx={{
-                                width: "100%",
-                                borderTopLeftRadius: "20px",
-                                borderBottomLeftRadius: "20px",
-                            }}
-                        >
-                            Русич
-                        </ListItemButton>
+                        {loading ? (
+                            <Typography sx={{ pl: 4 }}>Загрузка...</Typography>
+                        ) : courses.length > 0 ? (
+                            courses.map(course => (
+                                <ListItemButton
+                                    key={course.id}
+                                    component={Link}
+                                    to={`/courses/${course.id}`}
+                                    sx={{
+                                        width: "100%",
+                                        borderTopLeftRadius: "20px",
+                                        borderBottomLeftRadius: "20px",
+                                        "&.active": {
+                                            bgcolor: "primary.dark",
+                                        },
+                                    }}
+                                >
+                                    <ListItemText primary={course.title} />
+                                </ListItemButton>
+                            ))
+                        ) : (
+                            <Typography sx={{ pl: 4 }}>
+                                Нет доступных курсов
+                            </Typography>
+                        )}
                     </List>
                 </Collapse>
             </List>

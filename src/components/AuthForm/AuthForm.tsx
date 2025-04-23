@@ -1,5 +1,5 @@
 import { Box, Button, Dialog, DialogTitle, TextField } from "@mui/material";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import RegistrationButton from "../RegistrationButton/RegistrationButton";
 
 interface AuthFormProps {
